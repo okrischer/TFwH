@@ -1,15 +1,16 @@
 module Types where
-
-main = do
-    oli == oli1
+import Pipe
 
 -- lazy evaluation
 -- the function infinity runs, if called directly, until infinity
 infinity = 1 + infinity
+
 -- three is a non-strict function, which returns 3, regardless of the argument given to it
 three x = 3
--- if we now call three with infinity as it's argument, infinity is not evaluated, because of Haskells lazy evaluation
--- instead, three just returns 3, since the evaluation of it's argument isn't necessary for returning the result
+
+-- if we now call three with infinity as it's argument, infinity is not evaluated, 
+-- because of Haskells lazy evaluation; instead, three just returns 3, since the 
+-- evaluation of it's argument isn't necessary for returning the result
 
 -- three infinity
 
@@ -61,7 +62,7 @@ data List a = Cons a (List a)
     deriving (Show)
 
 -- proving that this list has the same schape as the builtin list [a]
-buildList :: [a] -> List a
+buildList :: [a]   -> List a
 buildList []        = Nil
 buildList (x:xs)    = Cons x (buildList xs)
 
@@ -88,4 +89,4 @@ safeSecond xs   | null (tail xs) = Null
 -- even nicer with pattern matching
 tidySecond :: [a] -> Types.Maybe a
 tidySecond (_:x:_)  = Data x
-tidySecond _        = Null
+tidySecond _ = Null
