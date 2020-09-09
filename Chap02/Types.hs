@@ -1,3 +1,8 @@
+module Types where
+
+main = do
+    oli == oli1
+
 -- lazy evaluation
 -- the function infinity runs, if called directly, until infinity
 infinity = 1 + infinity
@@ -75,12 +80,12 @@ second xs   | null (tail xs) = error "list contains only one element"
             | otherwise = head (tail xs)
 
 -- using Maybe returns an empty value in case of exception
-safeSecond :: [a] -> Main.Maybe a
+safeSecond :: [a] -> Types.Maybe a
 safeSecond []   = Null
 safeSecond xs   | null (tail xs) = Null
                 | otherwise = Data (head (tail xs))
 
 -- even nicer with pattern matching
-tidySecond :: [a] -> Main.Maybe a
+tidySecond :: [a] -> Types.Maybe a
 tidySecond (_:x:_)  = Data x
 tidySecond _        = Null

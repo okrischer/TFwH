@@ -1,4 +1,3 @@
-module Anagrams where
 import Pipe
 import qualified Data.Char as Char
 import qualified Data.List as List
@@ -10,7 +9,8 @@ type Text = String
 type Label = String
 
 getWords :: Int -> Text -> [Wort]
-getWords n text =  [word | word <- words (map Char.toLower text), length word == n]
+getWords n text =  [word | word <- words (map Char.toLower text 
+    $> filter (\ x -> Char.isLetter x || Char.isSeparator x)), length word == n]
 
 addLabel :: Wort -> (Label, Wort)
 addLabel word = (List.sort word, word)
@@ -23,12 +23,14 @@ groupByLabel = groupByHelp Set.empty
 
 groupByHelp :: Set.Set Label -> [(Label, Wort)] -> [(Label, [Wort])]
 groupByHelp _ [] = []
-groupByHelp set xs 
-  | not (Set.member label set) = 
-      (label, [word | (label', word) <- xs, label == label'])
-      : groupByHelp (Set.insert label set) (tail xs)
-  | otherwise = groupByHelp set (tail xs)
-  where label = fst (head xs)
+groupByHelp set (x:xs) 
+  | not (Set.member label set) =
+      (label, wort:worte) : groupByHelp (Set.insert label set) xs
+  | otherwise = groupByHelp set xs
+  where 
+      label = fst x
+      wort  = snd x
+      worte = filter (\ tuple -> fst tuple == label) xs $> map snd $> filter (/= wort)
 
 showEntry :: [(Label, [Wort])] -> Dictionary
 showEntry [] = []
@@ -40,6 +42,12 @@ anagrams n text = getWords n text
                 $> sortLabels
                 $> groupByLabel
                 $> showEntry
+
+printAnagrams :: Int -> FilePath -> FilePath -> IO()
+printAnagrams n infile outfile = do
+  text <- readFile infile
+  writeFile outfile (anagrams n text)
+  putStrLn "anagrams done"
 
 
 
