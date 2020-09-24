@@ -1,3 +1,2 @@
-:set -fwarn-unused-binds
-:set -isrc
-:load Chap02/Exercises
+:set -Wall
+:load chap02/Palindrome
