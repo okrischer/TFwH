@@ -15,4 +15,4 @@ check line
 
 main :: IO()
 main = interact palindrome
-  where palindrome input = concat $ map check $ lines input
+  where palindrome input = concatMap check $ lines input

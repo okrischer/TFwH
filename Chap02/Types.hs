@@ -1,5 +1,4 @@
 module Types where
-import Pipe
 
 -- lazy evaluation
 -- the function infinity runs, if called directly, until infinity
@@ -44,13 +43,6 @@ data Person = Person {
 samePerson :: Person -> Person -> Bool
 samePerson p1 p2 = personPin p1 == personPin p2
 
--- create some instances of Person and play with them in GHCI
-oli = Person 123 "Oliver" "Krischer" ["Zentnerstr. 26", "80798 München"]
-oli1 = Person 123 "Oliver" "Krischer" ["Zentnerstr. 26", "80798 München"]
-olli = Person 123 "Oliver" "Krischer" ["Paulsborner Str. 21", "10709 Berlin"]
-perla = Person 124 "Perla" "Bortmes" ["Lilly-Reich-Str. 10", "80807 München"]
-jacky = Person 125 "Jeremy" "Bortmes" ["Lilly-Reich-Str. 10", "80807 München"]
-
 -- using parameterized types for creating generic data types
 data Maybe a = Data a
              | Null
@@ -60,11 +52,6 @@ data Maybe a = Data a
 data List a = Cons a (List a)
             | Nil
     deriving (Show)
-
--- proving that this list has the same schape as the builtin list [a]
-buildList :: [a]   -> List a
-buildList []        = Nil
-buildList (x:xs)    = Cons x (buildList xs)
 
 -- building a binary tree
 data Tree a = Node a (Tree a) (Tree a)
