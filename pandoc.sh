@@ -1,0 +1,1 @@
+pandoc --mathjax --highlight-style=tango --metadata title="CHAPTER 3: NUMBERS" -s -f markdown+lhs -t html -o chapter03/Numbers.html chapter03/Numbers.lhs

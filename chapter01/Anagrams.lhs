@@ -1,5 +1,6 @@
 Problem Description
 -------------------
+
 Write a function that creates a printout of anagrams of all the words
 with a given length in a text with the following specification:
 
@@ -14,7 +15,6 @@ Solution
 > import Data.Char (toLower)
 > import Data.List (sort)
 > import qualified Data.Set as Set
-> import Flow
 
 > type Dictionary = String
 > type Wort = String
@@ -41,13 +41,13 @@ Solution
 **sort list of label-word-tuples in aplphabetical order**
 
 > sortLabels :: [(Label, Wort)] -> [(Label, Wort)]
-> sortLabels xs = sort xs
+> sortLabels = sort
 
 **replace each group of labelled words with the same label
 with a single entry using an accumulator (Set.empty) and a helper function**
 
 > groupByLabel :: [(Label, Wort)] -> [(Label, [Wort])]
-> groupByLabel xs = groupByHelp Set.empty xs
+> groupByLabel = groupByHelp Set.empty
 
 > groupByHelp :: Set.Set Label -> [(Label, Wort)] -> [(Label, [Wort])]
 > groupByHelp _ [] = []

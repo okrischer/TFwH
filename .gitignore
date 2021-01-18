@@ -1,4 +1,12 @@
 .DS_Store
+.ipynb_checkpoints/
 *.swp
 *.exe
-.ipynb_checkpoints/
+*.html
+*.pdf
+*.hi
+*.aux
+*.log
+*.ptb
+*.tex
+*.o
